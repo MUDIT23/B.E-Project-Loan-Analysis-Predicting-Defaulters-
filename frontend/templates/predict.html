@@ -1,124 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.15/components.css"> -->
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <title>predict</title>
-    <style>
-       body{
-        background: #6190E8;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #A7BFE8, #6190E8);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #A7BFE8, #6190E8);
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.15/components.css"> -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <title>predict</title>
+  <style>
+    body {
+      background: #6190E8;
+      /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #A7BFE8, #6190E8);
+      /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #A7BFE8, #6190E8);
     }
-        h1{
-           text-align: center;
-        }
-        #btn-submit{
-            margin: 0 auto;
-        }
-        #login-btn{
-            color: black;
-            font-size: 20px;
-        }    
-        #home{
+
+    h1 {
+      text-align: center;
+    }
+
+    #btn-submit {
+      margin: 0 auto;
+    }
+
+    #login-btn {
+      color: black;
+      font-size: 20px;
+    }
+
+    #home {
       color: black;
       font-size: 20px;
       cursor: pointer;
     }
-    </style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .column {
+      float: left;
+      width: 33.33%;
+      padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  </style>
 </head>
+
 <body>
 
-    <header class="text-gray-600 body-font">
-        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-          <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-            <!-- <svg xmlns="http://www.w3.org/2000/svg"  fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-purple-500 rounded-full" viewBox="0 0 24 24">
+  <header class="text-gray-600 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg"  fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-purple-500 rounded-full" viewBox="0 0 24 24">
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                 </svg> -->
-            <a class="navbar-brand" href="#">
-    
-              <img src="../static/icons8-bank-building-64.png" width="72" height="50" alt="error 404">
-    
-            </a>
-            <span style="color: black; font-weight: bold;" class="ml-3 text-xl">Loan Analysis</span>
-          </a>
-          <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center"> 
-            <a id="home" class="mr-5 hover:text-gray-900">Home</a> 
-            <!-- <a id="predict" class="mr-5 hover:text-gray-900">Predict</a>
-            <a id="visualize" class="mr-5 hover:text-gray-900">Visualize</a> -->
-            <!-- <a class="mr-5 hover:text-gray-900">Fourth Link</a> -->
-          </nav>
-          <button onclick="location.href='login'" id="login-btn"
-            class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Logout
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-          </button>
-        </div>
-      </header>
+        <a class="navbar-brand" href="#">
 
-    <!-- form section -->
-    <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
-        <h1 class="text-4xl font-bold text-white capitalize dark:text-white headingEl">Predict Loan Approval</h1>
-        <h4 class="text-xl text-white capitalize dark:text-white">Please fill in the details to get your chances of loan approval</h4>
-        <form>
-            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-                <div>
-                    <label class="text-white dark:text-gray-200" for="username">Loan Amount</label>
-                    <input id="username" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                </div>
-    
-                <div>
-                    <label class="text-white dark:text-gray-200" for="emailAddress">RTI</label>
-                    <input id="emailAddress" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                </div>
-    
-                <div>
-                    <label class="text-white dark:text-gray-200" for="password">Income</label>
-                    <input id="text" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                </div>
-    
-                <div>
-                    <label class="text-white dark:text-gray-200" for="passwordConfirmation">Loan issue month</label>
-                    <input id="quantity" name="quantity" min="1" max="12" id="passwordConfirmation" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                    maxlength = "2" type="number" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                </div>
-                <div>
-                    <label class="text-white dark:text-gray-200">Loan issue year</label>
-                    <input id="username" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                    maxlength = "4" type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                </div>
-                <div>
-                    <label class="text-white dark:text-gray-200" for="passwordConfirmation">Home Ownership</label>
-                    <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                        <option>Rent</option>
-                        <option>Mortgage</option>
-                        <option>None</option>
-                        <option>other</option>
-                        <option>Own</option>
-                        <option>Any</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="text-white dark:text-gray-200" for="passwordConfirmation">Verification Status</label>
-                    <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                        <option>Not Verified</option>
-                        <option>Source Verified</option>
-                        <option>Verified</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="text-white dark:text-gray-200" for="passwordConfirmation">Term</label>
-                    <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                        <option>36 Months</option>
-                        <option>60 Months</option>
-                    </select>
-                </div>
-                <!-- <div>
+          <img src="../static/icons8-bank-building-64.png" width="72" height="50" alt="error 404">
+
+        </a>
+        <span style="color: black; font-weight: bold;" class="ml-3 text-xl">Loan Analysis</span>
+      </a>
+      <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <a id="home" class="mr-5 hover:text-gray-900">Home</a>
+        <!-- <a id="predict" class="mr-5 hover:text-gray-900">Predict</a>
+            <a id="visualize" class="mr-5 hover:text-gray-900">Visualize</a> -->
+        <!-- <a class="mr-5 hover:text-gray-900">Fourth Link</a> -->
+      </nav>
+      <button onclick="location.href='login'" id="login-btn"
+        class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Logout
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- form section -->
+  <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
+    <h1 class="text-4xl font-bold text-white capitalize dark:text-white headingEl">Predict Loan Approval</h1>
+    <h4 class="text-xl text-white capitalize dark:text-white">Please fill in the details to get your chances of loan
+      approval</h4>
+    <form>
+      <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+        <div>
+          <label class="text-white dark:text-gray-200" for="username">Loan Amount</label>
+          <input id="username" type="number"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+        </div>
+
+        <div>
+          <label class="text-white dark:text-gray-200" for="emailAddress">RTI</label>
+          <input id="emailAddress" type="number"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+        </div>
+
+        <div>
+          <label class="text-white dark:text-gray-200" for="password">Income</label>
+          <input id="text" type="number"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+        </div>
+
+        <div>
+          <label class="text-white dark:text-gray-200" for="passwordConfirmation">Loan issue month</label>
+          <input id="quantity" name="quantity" min="1" max="12" id="passwordConfirmation"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="2" type="number" type="number"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+        </div>
+        <div>
+          <label class="text-white dark:text-gray-200">Loan issue year</label>
+          <input id="username"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="4" type="number"
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+        </div>
+        <div>
+          <label class="text-white dark:text-gray-200" for="passwordConfirmation">Home Ownership</label>
+          <select
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+            <option>Rent</option>
+            <option>Mortgage</option>
+            <option>None</option>
+            <option>other</option>
+            <option>Own</option>
+            <option>Any</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-white dark:text-gray-200" for="passwordConfirmation">Verification Status</label>
+          <select
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+            <option>Not Verified</option>
+            <option>Source Verified</option>
+            <option>Verified</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-white dark:text-gray-200" for="passwordConfirmation">Term</label>
+          <select
+            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+            <option>36 Months</option>
+            <option>60 Months</option>
+          </select>
+        </div>
+        <!-- <div>
                     <label class="text-white dark:text-gray-200" for="passwordConfirmation">Text Area</label>
                     <textarea id="textarea" type="textarea" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"></textarea>
                 </div>
@@ -144,15 +180,47 @@
                     </div>
                   </div>
                 </div> -->
-            </div>
-    
-            <div class="flex justify-end mt-6">
-                <button id="btn-submit" class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Submit</button>
-            </div>
-        </form>
-    </section>
-    
-     <!-- <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
+      </div>
+
+      <div class="flex justify-end mt-6">
+        <button id="btn-submit"
+          class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600">Submit</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- data visualization images -->
+
+  <!-- <div class="datavis">
+    <h2>Data Visualization</h2>
+    <img src="../static/data_vis_1.png" alt="error">
+    <img src="../static/data_vis_2.png" alt="error">
+    <img src="../static/data_vis_3.png" alt="error">
+
+  </div> -->
+
+  <br>
+  <br>
+
+  <h1 style="font-size: 50px;">Data Visualization</h1>
+
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="column">
+      <img src="../static/data_vis_1.png" alt="error" style="width:100%; height: 410px;">
+    </div>
+    <div class="column">
+      <img src="../static/data_vis_2.png" alt="error" style="width:100%; height: 410px;">
+    </div>
+    <div class="column">
+      <img src="../static/data_vis_3.png" alt="error" style="width:100%; height: 410px;">
+    </div>
+  </div>
+
+
+  <!-- <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
         <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Account settings</h2>
         
         <form>
@@ -184,4 +252,5 @@
         </form>
     </section> -->
 </body>
+
 </html>
