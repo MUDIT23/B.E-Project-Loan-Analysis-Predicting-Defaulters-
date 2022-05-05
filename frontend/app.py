@@ -127,9 +127,9 @@ def Loan_Application():
         if pred==1:
             res = '🎊🎊Congratulations! your Loan Application has been Approved!🎊🎊'
         else:
-            res1 = '😔😔Unfortunatly your Loan Application has been Denied😔😔'
+            res1 = '😔😔Unfortunately your Loan Application has been Denied😔😔'
 
-            res2 = 'Factors that affect the loan approval: \n 1. Credit History \n 2. Self Employment'
+            res2 = 'Factors that affect the loan approval: \n 1. Credit History \n 2. Self Employment \n 3. Loan Amount'
 
             res = res1 + res2
         
